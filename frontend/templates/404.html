@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block title %}Page not found | The Diary of a Data Scientist{% endblock %}
+{% block content %}
+<section class="hero wrap">
+  <h1>We could not find that page.</h1>
+  <p class="lede">The link may be out of date. Browse the full A–Z list to find the term you need.</p>
+  <a class="more" href="{{ url_for('index') }}#glossary">Go to the glossary</a>
+</section>
+{% endblock %}

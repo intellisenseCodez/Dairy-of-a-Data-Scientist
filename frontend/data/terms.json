@@ -1,0 +1,24 @@
+[
+  {
+    "term": "Algorithm",
+    "level": "Beginner",
+    "definition": "A fixed set of steps a computer follows to solve a problem or make a prediction.",
+    "example": "Sorting customers by spend, or a model that learns to flag fraud.",
+    "page_url": "algorithm.html",
+    "related": [
+      "Gradient descent",
+      "Regression"
+    ]
+  },
+  {
+    "term": "Bias–variance tradeoff",
+    "level": "Advanced",
+    "definition": "The balance between a model that is too simple (high bias) and one that is too sensitive to its training data (high variance).",
+    "example": "A straight line misses a curved trend; a wiggly curve chases noise.",
+    "page_url": "bias–variance-tradeoff.html",
+    "related": [
+      "Overfitting",
+      "Underfitting"
+    ]
+  }
+]

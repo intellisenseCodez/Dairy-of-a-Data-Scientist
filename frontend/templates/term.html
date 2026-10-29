@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% block title %}{{ t.term }} | The Diary of a Data Scientist{% endblock %}
+{% block desc %}{{ t.definition }}{% endblock %}
+{% block head %}
+<script type="application/ld+json">{{ {"@context":"https://schema.org","@type":"DefinedTerm","name":t.term,"description":t.definition,"url":url_for('term', slug=t.slug, _external=True),"inDefinedTermSet":url_for('index', _external=True)}|tojson }}</script>
+{% endblock %}
+{% block content %}
+<div class="wrap tp">
+  <p class="crumbs"><a href="{{ url_for('index') }}#glossary">Glossary</a> / <a href="{{ url_for('index') }}#letter-{{ letter }}">{{ letter }}</a> / {{ t.term }}</p>
+  <h1>{{ t.term }}</h1>
+  <span class="lvl {{ t.level }}" style="margin-left:0">{{ t.level }}</span>
+  <p class="def">{{ t.definition }}</p>
+
+  <h2>Example</h2>
+  <p class="eg">{{ t.example }}</p>
+
+  {% if t.related_terms %}
+  <h2>Related concepts</h2>
+  <div class="chips">
+    {% for r in t.related_terms %}<a class="chip" href="{{ url_for('term', slug=r.slug) }}">{{ r.term }}</a>{% endfor %}
+  </div>
+  {% endif %}
+
+  <h2>Go deeper</h2>
+  <div class="grid4" style="grid-template-columns:repeat(auto-fit,minmax(220px,1fr))">
+    <div class="step"><h3>Apply it</h3><p>Work through a practical problem that uses {{ t.term|lower }}.</p><span class="soon">Coming soon</span></div>
+    <div class="step"><h3>Test yourself</h3><p>A short quiz to check you can explain and use it.</p><span class="soon">Coming soon</span></div>
+  </div>
+
+  <div class="btnrow">
+    <a class="btn2" href="{{ repo_url }}/edit/main/data/terms.json">Improve this entry</a>
+    <a class="btn2" href="{{ url_for('index') }}#contribute">How to contribute</a>
+  </div>
+
+  <div class="pn">
+    {% if prev %}<a class="btn2" href="{{ url_for('term', slug=prev.slug) }}"><small>Previous</small>{{ prev.term }}</a>{% endif %}
+    {% if next %}<a class="btn2" style="text-align:right" href="{{ url_for('term', slug=next.slug) }}"><small>Next</small>{{ next.term }}</a>{% endif %}
+  </div>
+</div>
+{% endblock %}

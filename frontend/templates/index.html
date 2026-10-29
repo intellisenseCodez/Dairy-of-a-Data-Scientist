@@ -1,0 +1,111 @@
+{% extends "base.html" %}
+{% block title %}The Diary of a Data Scientist: A–Z of Data Concepts{% endblock %}
+{% block content %}
+  <section class="hero wrap">
+    <h1>Every data concept, from A to Z.</h1>
+    <p class="lede">A growing diary of the ideas behind data science, analytics and data engineering. Start as a beginner, come back as a professional, and see how every concept connects to the next.</p>
+    <ul class="pillars" aria-label="What you can do">
+      <li class="on">Look it up</li><li>Apply it</li><li>Test yourself</li><li>Connect the dots</li>
+    </ul>
+    <nav class="az" id="az" aria-label="Jump to letter">
+      {% for L, has in letters %}
+        {% if has %}<a href="#letter-{{ L }}" aria-label="Jump to {{ L }}">{{ L }}</a>
+        {% else %}<span aria-label="{{ L }}, no entries yet">{{ L }}</span>{% endif %}
+      {% endfor %}
+    </nav>
+  </section>
+
+  <section class="glossary wrap" id="glossary">
+    <h2>The glossary</h2>
+    <p class="lede" style="margin-bottom:6px">Tap a term to open it. Related concepts are one tap away.</p>
+    <div class="controls">
+      <label for="q" class="sr">Search terms</label>
+      <input id="q" class="search" type="search" placeholder="Search terms, e.g. regression, join, outlier" autocomplete="off">
+      <div class="chips" role="group" aria-label="Filter by level">
+        <button class="chip" data-l="All" aria-pressed="true">All levels</button>
+        {% for l in levels %}<button class="chip" data-l="{{ l }}" aria-pressed="false">{{ l }}</button>{% endfor %}
+        <span id="count" data-total="{{ total }}" aria-live="polite">{{ total }} of {{ total }} terms</span>
+      </div>
+    </div>
+
+    <div id="list">
+    {% for L, items in groups.items() %}
+      <div class="letter" id="letter-{{ L }}" data-letter="{{ L }}"><h3>{{ L }}</h3><hr></div>
+      {% for t in items %}
+      <details class="term" id="t-{{ t.slug }}" data-letter="{{ L }}" data-level="{{ t.level }}" data-text="{{ (t.term ~ ' ' ~ t.definition)|lower }}">
+        <summary><span><span class="t">{{ t.term }}</span><span class="lvl {{ t.level }}">{{ t.level }}</span></span></summary>
+        <div class="body">
+          <p>{{ t.definition }}</p>
+          <p class="eg">Example: {{ t.example }}</p>
+          {% if t.related_terms %}
+          <div class="rel"><span>Related:</span>
+            {% for r in t.related_terms %}<a class="relink" href="#t-{{ r.slug }}">{{ r.term }}</a>{% endfor %}
+          </div>
+          {% endif %}
+          <a class="more" href="{{ url_for('term', slug=t.slug) }}">More about {{ t.term }}</a>
+        </div>
+      </details>
+      {% endfor %}
+    {% endfor %}
+    </div>
+    <div class="empty" id="empty" hidden>No terms match. Try a shorter search or another level.</div>
+  </section>
+
+  <section class="section wrap" id="how">
+    <h2>More than a dictionary</h2>
+    <p class="lede" style="margin:0">Each entry is the start of a learning loop.</p>
+    <div class="grid4">
+      <div class="step"><h3>Understand</h3><p>Plain-language definitions with a worked example for every term.</p></div>
+      <div class="step"><h3>Apply</h3><p>Practical problems and mini case studies that use the concept for real.</p><span class="soon">Coming soon</span></div>
+      <div class="step"><h3>Test</h3><p>Short quizzes to check what stuck, and to refresh what you have forgotten.</p><span class="soon">Coming soon</span></div>
+      <div class="step"><h3>Connect</h3><p>A concept map showing which ideas lead to which, so you know what to learn next.</p><span class="soon">Coming soon</span></div>
+    </div>
+  </section>
+
+  <section class="section wrap" id="roadmap">
+    <h2>Who it is for</h2>
+    <div class="grid4" style="grid-template-columns:repeat(auto-fit,minmax(240px,1fr))">
+      <div class="step"><h3>Beginners</h3><p>Learn the vocabulary first, with levels that tell you where to start.</p></div>
+      <div class="step"><h3>Practitioners</h3><p>Refresh a concept before an interview, a review or a hard project.</p></div>
+      <div class="step"><h3>Educators and teams</h3><p>A shared language for classrooms, bootcamps and data teams.</p></div>
+    </div>
+  </section>
+
+  <section class="section wrap" id="contribute">
+    <h2>Contribute to the diary</h2>
+    <p class="lede" style="margin:0">The glossary is open. Developers, data scientists and educators can add terms, fix definitions and improve examples through a pull request.</p>
+    <div class="grid4" style="grid-template-columns:repeat(auto-fit,minmax(220px,1fr))">
+      <div class="step"><h3>1. Fork the repo</h3><p>Fork the project on GitHub and clone it. Run <code>pip install -r requirements.txt</code> then <code>flask run</code> to preview locally.</p></div>
+      <div class="step"><h3>2. Add or edit a term</h3><p>Open <code>data/terms.json</code> and add one object to the list, using the format below. The site updates on restart.</p></div>
+      <div class="step"><h3>3. Open a pull request</h3><p>Describe what you changed and why. A maintainer reviews it for accuracy and clarity before it goes live.</p></div>
+    </div>
+    <pre class="code" tabindex="0">{
+  "term": "Term name",
+  "level": "Beginner",
+  "definition": "One or two plain-language sentences.",
+  "example": "A short, concrete example.",
+  "related": ["Related term", "Another related term"]
+}</pre>
+    <p style="color:var(--muted);margin:0">Level must be Beginner, Intermediate or Advanced. The app checks this on startup and refuses to run if an entry is invalid.</p>
+    <ul class="rules">
+      <li>Write for a beginner first, then add depth in the example.</li>
+      <li>Keep the definition under 40 words and use your own words.</li>
+      <li>Related terms must match the exact name of an existing entry.</li>
+      <li>Cite a source in your pull request when a claim is technical or contested.</li>
+    </ul>
+    <div class="btnrow">
+      <a class="btn2" href="{{ repo_url }}">View the repository</a>
+      <a class="btn2" href="{{ repo_url }}/issues/new">Suggest a term</a>
+    </div>
+  </section>
+
+  <section class="section wrap" id="join">
+    <h2>Get early access</h2>
+    <p class="lede" style="margin:0">Be first to see new terms, quizzes and the concept map.</p>
+    <form class="signup" id="signup" action="{{ url_for('subscribe') }}" method="post" novalidate>
+      <input type="email" name="email" id="email" placeholder="you@example.com" aria-label="Email address" required>
+      <button type="submit">Notify me</button>
+    </form>
+    <div id="msg" role="status"></div>
+  </section>
+{% endblock %}
