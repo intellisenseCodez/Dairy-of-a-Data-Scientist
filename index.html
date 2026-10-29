@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>The Diary of a Data Scientist: A–Z of Data Concepts</title>
+<meta name="description" content="A living A–Z glossary of data science, analytics and engineering concepts. Learn it, apply it, test it, connect it.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,500;0,6..72,700;1,6..72,500&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap bar">
+    <a class="brand" href="#top">The Diary of a Data Scientist</a>
+    <div class="tools">
+      <nav id="nav" aria-label="Main">
+        <ul>
+          <li><a href="#glossary">Glossary</a></li>
+          <li><a href="#how">How it works</a></li>
+          <li><a href="#roadmap">Who it is for</a></li>
+          <li><a href="#contribute">Contribute</a></li>
+          <li><a class="cta" href="#join">Join early access</a></li>
+        </ul>
+      </nav>
+      <button class="icon-btn" id="theme" aria-label="Toggle dark mode" title="Toggle dark mode">◐</button>
+      <button class="icon-btn menu-btn" id="menu" aria-label="Open menu" aria-expanded="false" aria-controls="nav">☰</button>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero wrap">
+    <h1>Every data concept, from A to Z.</h1>
+    <p class="lede">A growing diary of the ideas behind data science, analytics and data engineering. Start as a beginner, come back as a professional, and see how every concept connects to the next.</p>
+    <ul class="pillars" aria-label="What you can do">
+      <li class="on">Look it up</li><li>Apply it</li><li>Test yourself</li><li>Connect the dots</li>
+    </ul>
+    <nav class="az" id="az" aria-label="Jump to letter"></nav>
+  </section>
+
+  <section class="glossary wrap" id="glossary">
+    <h2>The glossary</h2>
+    <p class="lede" style="margin-bottom:6px">Tap a term to open it. Related concepts are one tap away.</p>
+    <div class="controls">
+      <label for="q" class="sr" style="position:absolute;left:-9999px">Search terms</label>
+      <input id="q" class="search" type="search" placeholder="Search terms, e.g. regression, join, outlier" autocomplete="off">
+      <div class="chips" role="group" aria-label="Filter by level">
+        <button class="chip" data-l="All" aria-pressed="true">All levels</button>
+        <button class="chip" data-l="Beginner" aria-pressed="false">Beginner</button>
+        <button class="chip" data-l="Intermediate" aria-pressed="false">Intermediate</button>
+        <button class="chip" data-l="Advanced" aria-pressed="false">Advanced</button>
+        <span id="count" aria-live="polite"></span>
+      </div>
+    </div>
+    <div id="list"></div>
+  </section>
+
+  <section class="section wrap" id="how">
+    <h2>More than a dictionary</h2>
+    <p class="lede" style="margin:0">Each entry is the start of a learning loop.</p>
+    <div class="grid4">
+      <div class="step"><h3>Understand</h3><p>Plain-language definitions with a worked example for every term.</p></div>
+      <div class="step"><h3>Apply</h3><p>Practical problems and mini case studies that use the concept for real.</p><span class="soon">Coming soon</span></div>
+      <div class="step"><h3>Test</h3><p>Short quizzes to check what stuck, and to refresh what you have forgotten.</p><span class="soon">Coming soon</span></div>
+      <div class="step"><h3>Connect</h3><p>A concept map showing which ideas lead to which, so you know what to learn next.</p><span class="soon">Coming soon</span></div>
+    </div>
+  </section>
+
+  <section class="section wrap" id="roadmap">
+    <h2>Who it is for</h2>
+    <div class="grid4" style="grid-template-columns:repeat(auto-fit,minmax(240px,1fr))">
+      <div class="step"><h3>Beginners</h3><p>Learn the vocabulary first, with levels that tell you where to start.</p></div>
+      <div class="step"><h3>Practitioners</h3><p>Refresh a concept before an interview, a review or a hard project.</p></div>
+      <div class="step"><h3>Educators and teams</h3><p>A shared language for classrooms, bootcamps and data teams.</p></div>
+    </div>
+  </section>
+
+  <section class="section wrap" id="contribute">
+    <h2>Contribute to the diary</h2>
+    <p class="lede" style="margin:0">The glossary is open. Developers, data scientists and educators can add terms, fix definitions and improve examples through a pull request.</p>
+    <div class="grid4" style="grid-template-columns:repeat(auto-fit,minmax(220px,1fr))">
+      <div class="step"><h3>1. Fork the repo</h3><p>Fork the project on GitHub and clone it. It is plain HTML, CSS and JavaScript, so there is nothing to install.</p></div>
+      <div class="step"><h3>2. Add or edit a term</h3><p>Open <code>terms.js</code> and add one row to the <code>TERMS</code> array, using the format below.</p></div>
+      <div class="step"><h3>3. Open a pull request</h3><p>Describe what you changed and why. A maintainer reviews it for accuracy and clarity before it goes live.</p></div>
+    </div>
+    <pre class="code" tabindex="0">["Term name", "Beginner", // Beginner | Intermediate | Advanced
+ "One or two plain-language sentences defining it.",
+ "A short, concrete example.",
+ ["Related term", "Another related term"]],</pre>
+    <ul class="rules">
+      <li>Write for a beginner first, then add depth in the example.</li>
+      <li>Keep the definition under 40 words and use your own words.</li>
+      <li>Related terms must match the exact name of an existing entry.</li>
+      <li>Cite a source in your pull request when a claim is technical or contested.</li>
+    </ul>
+    <div class="btnrow">
+      <a class="btn2" id="repo-link" href="#">View the repository</a>
+      <a class="btn2" id="issue-link" href="#">Suggest a term</a>
+    </div>
+  </section>
+
+  <section class="section wrap" id="join">
+    <h2>Get early access</h2>
+    <p class="lede" style="margin:0">Be first to see new terms, quizzes and the concept map.</p>
+    <form class="signup" id="signup" novalidate>
+      <input type="email" id="email" placeholder="you@example.com" aria-label="Email address" required>
+      <button type="submit">Notify me</button>
+    </form>
+    <div id="msg" role="status"></div>
+  </section>
+</main>
+
+<footer><div class="wrap">© <span id="yr"></span> The Diary of a Data Scientist. Entries are written to be learned from, one letter at a time.</div></footer>
+
+<script src="terms.js"></script>
+<script>
+const $=s=>document.querySelector(s);
+const letters="ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
+const have=new Set(TERMS.map(x=>x.t[0].toUpperCase()));
+let level="All",query="";
+
+function el(tag,attrs={},kids=[]){const n=document.createElement(tag);
+  for(const k in attrs){if(k==="text")n.textContent=attrs[k];else n.setAttribute(k,attrs[k]);}
+  kids.forEach(c=>n.append(c));return n;}
+
+function renderAZ(){
+  const az=$("#az");az.textContent="";
+  letters.forEach(L=>{
+    if(have.has(L)){az.append(el("a",{href:"#letter-"+L,text:L,"aria-label":"Jump to "+L}));}
+    else az.append(el("span",{text:L,"aria-label":L+", no entries yet"}));
+  });
+}
+
+function render(){
+  const list=$("#list");list.textContent="";
+  const q=query.trim().toLowerCase();
+  const items=TERMS.filter(x=>(level==="All"||x.l===level)&&(!q||x.t.toLowerCase().includes(q)||x.d.toLowerCase().includes(q)));
+  $("#count").textContent=items.length+" of "+TERMS.length+" terms";
+  if(!items.length){list.append(el("div",{class:"empty",text:"No terms match. Try a shorter search or another level."}));return;}
+  let cur="";
+  items.forEach(x=>{
+    const L=x.t[0].toUpperCase();
+    if(L!==cur){cur=L;list.append(el("div",{class:"letter",id:"letter-"+L},[el("h3",{text:L}),el("hr")]));}
+    const rel=el("div",{class:"rel"},[el("span",{text:"Related:"})]);
+    x.r.forEach(n=>{if(byName[n]){const b=el("button",{type:"button",text:n});b.addEventListener("click",()=>openTerm(n));rel.append(b);}});
+    const d=el("details",{class:"term",id:x.id},[
+      el("summary",{},[el("span",{},[el("span",{class:"t",text:x.t}),el("span",{class:"lvl "+x.l,text:x.l})])]),
+      el("div",{class:"body"},[el("p",{text:x.d}),el("p",{class:"eg",text:"Example: "+x.e}),rel,el("a",{class:"more",href:"term.html?t="+encodeURIComponent(x.id),text:"More about "+x.t})])
+    ]);
+    list.append(d);
+  });
+}
+
+function openTerm(name){
+  const x=byName[name];if(!x)return;
+  if(level!=="All"&&x.l!==level||query){level="All";query="";$("#q").value="";syncChips();render();}
+  const d=document.getElementById(x.id);if(!d)return;
+  d.open=true;d.scrollIntoView({behavior:"smooth",block:"center"});
+  const s=d.querySelector("summary");if(s)s.focus({preventScroll:true});
+}
+function syncChips(){document.querySelectorAll(".chip").forEach(c=>c.setAttribute("aria-pressed",String(c.dataset.l===level)));}
+
+$("#q").addEventListener("input",e=>{query=e.target.value;render();});
+document.querySelectorAll(".chip").forEach(c=>c.addEventListener("click",()=>{level=c.dataset.l;syncChips();render();}));
+
+/* menu */
+const nav=$("#nav"),menu=$("#menu");
+menu.addEventListener("click",()=>{const o=nav.classList.toggle("open");menu.setAttribute("aria-expanded",String(o));menu.textContent=o?"✕":"☰";});
+nav.addEventListener("click",e=>{if(e.target.tagName==="A"){nav.classList.remove("open");menu.setAttribute("aria-expanded","false");menu.textContent="☰";}});
+
+/* theme */
+$("#theme").addEventListener("click",()=>{
+  const r=document.documentElement;
+  const dark=r.dataset.theme?r.dataset.theme==="dark":matchMedia("(prefers-color-scheme:dark)").matches;
+  r.dataset.theme=dark?"light":"dark";
+});
+
+/* highlight current letter in the index while scrolling */
+const io=new IntersectionObserver(es=>es.forEach(en=>{if(en.isIntersecting){
+  document.querySelectorAll("#az a").forEach(a=>a.classList.toggle("active",a.getAttribute("href")==="#"+en.target.id));}}),{rootMargin:"-30% 0px -60% 0px"});
+function observe(){document.querySelectorAll(".letter").forEach(n=>io.observe(n));}
+
+/* signup (front-end only: connect to your email service) */
+$("#signup").addEventListener("submit",e=>{
+  e.preventDefault();const v=$("#email").value.trim();
+  $("#msg").textContent=/^\S+@\S+\.\S+$/.test(v)?"Thanks. You are on the list.":"Please enter a valid email address.";
+  if(/^\S+@\S+\.\S+$/.test(v))e.target.reset();
+});
+
+$("#repo-link").href=REPO;$("#issue-link").href=REPO+"/issues/new";
+$("#yr").textContent=new Date().getFullYear();
+renderAZ();render();observe();
+new MutationObserver(observe).observe($("#list"),{childList:true});
+</script>
+</body>
+</html>
